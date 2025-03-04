@@ -1,0 +1,9 @@
+{
+    "id": "daily-file-logger",
+    "name": "Daily File Logger",
+    "version": "1.0.0",
+    "minAppVersion": "0.15.0",
+    "description": "Logs links to created or edited files in the daily note.",
+    "author": "ASHLOVEPINK",
+    "isDesktopOnly": false
+  }
