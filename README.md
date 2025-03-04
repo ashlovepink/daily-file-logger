@@ -1,6 +1,6 @@
 # Daily File Logger
 
-[中文文档](README_CN.md)
+[中文文档](README_CN)
 
 ![Obsidian](https://img.shields.io/badge/Obsidian-Plugin-blueviolet) ![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen) ![License](https://img.shields.io/badge/License-MIT-green)
 
