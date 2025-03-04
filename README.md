@@ -1,7 +1,9 @@
 # Daily File Logger
 
+[中文文档](README_CN.md)
+
 ![Obsidian](https://img.shields.io/badge/Obsidian-Plugin-blueviolet) ![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen) ![License](https://img.shields.io/badge/License-MIT-green)
-[中文文档](README.md)
+
 ## Introduction
 
 **Daily File Logger** is an Obsidian plugin that automatically logs files created and modified each day. It generates daily diary entries in a specified folder, helping you track changes to your notes effortlessly.
