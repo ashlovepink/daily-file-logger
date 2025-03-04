@@ -1,0 +1,17 @@
+{
+  "name": "daily-file-logger",
+  "version": "1.0.0",
+  "description": "Logs links to created or edited files in the daily note.",
+  "main": "main.js",
+  "scripts": {
+    "build": "esbuild main.ts --bundle --platform=node --external:obsidian --outfile=main.js"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.20.1",
+    "obsidian": "^1.7.2",
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3"
+  }
+}
