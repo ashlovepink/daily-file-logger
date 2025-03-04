@@ -31,7 +31,6 @@ var DEFAULT_SETTINGS = {
   excludedFolders: [],
   enableDebug: false,
   diaryTemplatePath: ""
-  // 默认空模板路径
 };
 var DailyFileLogger = class extends import_obsidian.Plugin {
   settings;
@@ -156,26 +155,33 @@ ${createdSectionTitle}
                   diaryContent = diaryContent.replace(mergedPattern, mergedEntry);
                   this.debugLog("Merged create and edit times for:", fileName);
                 }
+                if (diaryFile instanceof import_obsidian.TFile) {
+                  await this.app.vault.modify(diaryFile, diaryContent);
+                } else {
+                  await this.app.vault.create(diaryPath, diaryContent);
+                }
+                return;
               }
             }
-          } else if (editSectionIndex !== -1) {
-            const editTitleEnd = editSectionIndex + editedSectionTitle.length;
-            const editNextSectionIndex = diaryContent.indexOf("## ", editTitleEnd);
-            const editSectionEnd = editNextSectionIndex !== -1 ? editNextSectionIndex : diaryContent.length;
-            const editContentAfterTitle = diaryContent.substring(editTitleEnd, editSectionEnd);
-            const editPattern = new RegExp(`- \\[\\[${fileName}\\]\\] \\(\\d{2}:\\d{2} edited\\)`);
-            if (!editContentAfterTitle.includes(`[[${fileName}]]`)) {
-              diaryContent = diaryContent.substring(0, editTitleEnd) + `
-- [[${fileName}]] (${time} edited)
-` + editContentAfterTitle.trim() + diaryContent.substring(editSectionEnd);
-            } else {
-              diaryContent = diaryContent.substring(0, editTitleEnd) + editContentAfterTitle.replace(editPattern, `- [[${fileName}]] (${time} edited)`) + diaryContent.substring(editSectionEnd);
-            }
-          } else {
-            diaryContent += `
+          }
+        }
+        if (editSectionIndex === -1) {
+          diaryContent += `
 ${editedSectionTitle}
 - [[${fileName}]] (${time} edited)
 `;
+        } else {
+          const editTitleEnd = editSectionIndex + editedSectionTitle.length;
+          const nextSectionIndex = diaryContent.indexOf("## ", editTitleEnd);
+          const editSectionEnd = nextSectionIndex !== -1 ? nextSectionIndex : diaryContent.length;
+          const editContentAfterTitle = diaryContent.substring(editTitleEnd, editSectionEnd);
+          const editPattern = new RegExp(`- \\[\\[${fileName}\\]\\] \\(\\d{2}:\\d{2} edited\\)`);
+          if (!editContentAfterTitle.includes(`[[${fileName}]]`)) {
+            diaryContent = diaryContent.substring(0, editTitleEnd) + `
+- [[${fileName}]] (${time} edited)
+` + editContentAfterTitle.trim() + diaryContent.substring(editSectionEnd);
+          } else {
+            diaryContent = diaryContent.substring(0, editTitleEnd) + editContentAfterTitle.replace(editPattern, `- [[${fileName}]] (${time} edited)`) + diaryContent.substring(editSectionEnd);
           }
         }
       }
