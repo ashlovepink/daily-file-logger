@@ -6,7 +6,7 @@
 
 **Daily File Logger** 是一个 Obsidian 插件，用于自动记录每日创建和编辑的文件。它会在指定文件夹中生成每日日记文件，帮助你轻松追踪笔记的变化。
 
-![image](https://github.com/ashlovepink/daily-file-logger/blob/main/DEMO.gif)
+![image](https://github.com/ashlovepink/daily-file-logger/blob/main/assets/demo.gif)
 
 ---
 
